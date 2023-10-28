@@ -49,9 +49,9 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         }
     }
     
-    var sliderValue: Float = 0.5 {
+    var sliderValue: Float = 0.1 {
         didSet {
-            
+          UserDefaults.standard.set(sliderValue, forKey: "sliderValue")
         }
     }
     
@@ -120,7 +120,11 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         slider.minimumValue = 0
         
         if let sliderVal = UserDefaults.standard.value(forKey: "sliderValue") as! Float? {
+          if sliderVal > 0.2 {
+            sliderValue = 0.2
+          } else {
             sliderValue = sliderVal
+          }
         }
         slider.value = sliderValue
     }
