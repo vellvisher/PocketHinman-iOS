@@ -121,7 +121,9 @@ class HomeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         
         if let sliderVal = UserDefaults.standard.value(forKey: "sliderValue") as! Float? {
           if sliderVal > 0.2 {
-            sliderValue = 0.2
+            // Users running an older version of the app with the slider range being 0.0->1.0,
+            // reset to default value of the slider.
+            sliderValue = 0.1
           } else {
             sliderValue = sliderVal
           }
